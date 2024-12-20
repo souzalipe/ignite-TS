@@ -9,6 +9,28 @@
     align-items: flex-start;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+    /* background-color: #121214; hover */
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #00875f;
+    border-radius: 6px; 
+    border: 1px solid transparent; 
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: #323238; 
+}
+
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #00B37E; 
+}
+
 @media (max-width: 768px) {
 
     html {
