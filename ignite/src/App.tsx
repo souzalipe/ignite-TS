@@ -60,9 +60,7 @@ function App() {
             return (
               <Post
                 key={post.id} // <= Qual a informação que dar uma identificação de qual post é qual?
-                author={post.author}
-                content={post.content}
-                publishedAt={post.publishedAt}
+                post={post} // <= ;vou ter todas as informações do post
               />
             );
           })}
