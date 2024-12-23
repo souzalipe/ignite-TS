@@ -14,10 +14,14 @@ interface Author {
   avatarUrl: string;
 }
 
-interface PostProps {
+export interface PostType {
+  id: number;
   author: Author;
   publishedAt: Date;
   content: Content[];
+}
+interface PostProps {
+  post: PostType;
 }
 
 interface Content {
@@ -26,7 +30,7 @@ interface Content {
 }
 
 
-function Post({ author, publishedAt, content }: PostProps) {
+export function Post({ post }: PostProps) {
   const [comments, setComments] = useState(["Post maravilhoso!!!"]);
 
   const [newCommentText, setNewCommentText] = useState("");
@@ -57,14 +61,14 @@ function Post({ author, publishedAt, content }: PostProps) {
   }
 
   const publishedDateFormated = format(
-    publishedAt,
+    post.publishedAt,
     "d 'de' LLLL 'às' HH:mm'h'",
     {
       locale: ptBR,
     }
   );
 
-  const publishDateRelativeToNow = formatDistanceToNow(publishedAt, {
+  const publishDateRelativeToNow = formatDistanceToNow(post.publishedAt, {
     locale: ptBR,
     addSuffix: true,
   });
@@ -75,24 +79,26 @@ function Post({ author, publishedAt, content }: PostProps) {
     <article className={PostStyleModule.post}>
       <header>
         <div className={PostStyleModule.author}>
-          <Avatar src={author.avatarUrl} />
+          <Avatar 
+            src={post.author.avatarUrl}
+           />
 
           <div className={PostStyleModule.authorInfo}>
-            <strong>{author.name}</strong>
-            <span>{author.role}</span>
+            <strong>{post.author.name}</strong>
+            <span>{post.author.role}</span>
           </div>
         </div>
 
         <time
           title={publishedDateFormated}
-          dateTime={publishedAt.toISOString()}
+          dateTime={post.publishedAt.toISOString()}
         >
           {publishDateRelativeToNow}
         </time>
       </header>
 
       <div className={PostStyleModule.content}>
-        {content.map((line) => {
+        {post.content.map((line) => {
           if (line.type === "pharagraph") {
             return <p key={line.content}>{line.content}</p>;
           } else if (line.type === "link") {

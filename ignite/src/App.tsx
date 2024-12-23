@@ -1,5 +1,5 @@
 import Header from "./components/Header/Header.tsx";
-import Post from "./components/Post/Post.tsx";
+import { Post, PostType } from "./components/Post/Post.tsx";
 import SideBar from "./components/SideBar/SideBar.tsx";
 
 import AppStylesModule from "./styles/App.module.css";
@@ -9,7 +9,7 @@ import "./styles/global.css";
 // publishedAt: Date
 // content: string
 
-const posts = [
+const posts: PostType[] = [
   {
     id: 1,
     author: {
